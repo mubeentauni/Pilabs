@@ -3,7 +3,7 @@
 Readme file for my Pilabs repository
 
   - Its contains tha data/tasks that i have worked on in my Pilabs summer.
-  - That is work on MEAN stack.
+  - That is work on MEAN stack.  
 > Basically this repository contains different files 
 >  for eg(html , css ,js) the basic work was done on JS.
 > 
