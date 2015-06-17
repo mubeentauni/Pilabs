@@ -1,0 +1,55 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<link rel="stylesheet" href="bootstrap-3.3.4-dist/css/bootstrap.min.css">
+	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+	 <style>
+	 .inputarea{
+	 	margin: 10px;
+	 }
+
+	 h1{
+	 	color: grey;
+
+	 }
+
+	 }
+	 </style>
+</head>
+<body>
+	<div class="inputarea">
+	<input class="col-xs-8" type="text" id="input" name="text1" placeholder="Enter Task here">
+<button class="btn btn-primary col-xs-4" type="button">Enter</button></div>
+	<div class="container">	
+		<div class="col-sm-6" id="list">
+			<h1>TODO list</h1>
+		</div>
+	</div>
+
+	<script>
+	$(function()
+	{
+		$(".btn").click(function()
+		{
+			var c=$("#input").val();
+			var forbutton=$('<button class="chbtn btn-primary col-xs-2" type="button" style="clear:left; margin:1px;">Done</button>');
+			var code=$('<div class="innerlist" style="clear:right; border:2px solid black; margin:7px;"></div>');
+			
+			code.text(c);
+			$("#input").val(" ");
+			$(code).append(forbutton);
+			$("#list").append(code);
+			forbutton.click(function(){
+				$(this).parent().remove();
+
+			});
+		});
+	});
+		
+	
+
+	</script>
+</body>
+</html>

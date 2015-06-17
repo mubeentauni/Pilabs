@@ -1,0 +1,30 @@
+///btn todo check
+
+
+
+$(function() {
+	$("#btnAddTodo").click(function(e) {
+		var value = $("#txtTodo").val();
+		if(value !== "") {
+			$("#pending-todos").append('<div class="todo-holder"><label><input type="checkbox" class="todo-checkbox" /> <span class="todo">'+value+'</label></div>');
+			$("#txtTodo").val("");
+		}
+	});
+
+	$("#txtTodo").keyup(function(e) {
+		if(e.keyCode == 13) {
+			value = $(this).val();
+			if(value != "") {
+				$("#btnAddTodo").click();
+			}
+		}
+	});
+
+	$(document.body).on('click', ".todo-checkbox", function() {
+		if($(this).is(":checked")) {
+			$(this).next(".todo").css("text-decoration", "line-through");
+		} else {
+			$(this).next(".todo").css("text-decoration", "none");
+		}
+	});
+});
