@@ -6,7 +6,7 @@ function model(){
 this.save = function(arr) 
     {
         $.ajax({
-	    url: 'http://datastore.asadmemon.com/chat/'+arr.timestamp, 
+	    url: 'http://localhost:3030/chat/'+arr.timestamp, 
 	    type: 'POST', 
 	    contentType: 'application/json', 
 	    data: JSON.stringify(arr),
@@ -20,7 +20,7 @@ this.save = function(arr)
       this.loader=function()
     {
 
-    	$.get('http://datastore.asadmemon.com/chat/',function(res)
+    	$.get('http://localhost:3030/chat',function(res)
 		 	{
 		 		if(!$.isEmptyObject(res))
 		 		{console.log(res);
