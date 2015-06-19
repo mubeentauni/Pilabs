@@ -1,7 +1,9 @@
 var express = require('express')
   , passport = require('passport')
   , util = require('util')
-  , LocalStrategy = require('passport-local').Strategy;
+  , LocalStrategy = require('passport-local').Strategy
+  , monk = require('monk')
+  , db = monk('localhost:27017/login');
 
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
@@ -16,26 +18,38 @@ var users = [
 ];
 
 function findById(id, fn) {
-  var idx = id - 1;
-  if (users[idx]) {
-    fn(null, users[idx]);
-  } else {
-    fn(new Error('User ' + id + ' does not exist'));
-  }
+  var collection=db.get('loginusers');
+  collection.findOne({_id:id},{},function(e,docs){
+console.log("id"+docs._id);
+if(docs._id){
+  fn(null,docs);
+}
+else{
+  fn(new Error('User '+id + 'does not exist'));
+}
+  });
+  
 }
 
 function findByUsername(username, fn) {
-  for (var i = 0, len = users.length; i < len; i++) {
-    var user = users[i];
-    if (user.username === username) {
-      return fn(null, user);
-    }
-  }
-  return fn(null, null);
+  var collection = db.get('loginusers');
+collection.findOne({username:username},{},function(e,docs){
+  console.log("username"+docs.username);
+    console.log(docs.password);
+    if(docs.username==username)
+      return fn(null, docs);
+
+      return fn(null,null);
+});
+
 }
 
 
 var app = express();
+app.use(function(req,res,next){
+    req.db = db;
+    next();
+});
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
@@ -63,7 +77,7 @@ app.use(passport.session());
 //   the user by ID when deserializing.
 passport.serializeUser(function(user, done) {
   console.log("ser",user);
-  done(null, user.id);
+  done(null, user._id);
 });
 
 passport.deserializeUser(function(id, done) {
@@ -132,6 +146,19 @@ app.post('/login',
 
     res.redirect('/account');
   });
+app.post('/Register',function(req,res){
+  var collection = req.db.get('loginusers');
+  collection.insert(req.body, function (err, doc) {
+        if (err) {
+            // If it failed, return error
+            res.send("There was a problem adding the information to the database.");
+        }
+        else {
+            res.redirect('/');
+        }
+    });
+}
+  );
   
 // POST /login
 //   This is an alternative implementation that uses a custom callback to
