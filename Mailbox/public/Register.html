@@ -25,14 +25,12 @@ color:white;
 
 	height:20px;
 }
-.navbar{
+
+.navbar {
 
 background: #41608D;
 color: white;
 }
- 
-
-
 #main{
 	background: white;
 	border-radius: 5%;
@@ -57,18 +55,18 @@ color: white;
 </style>
 <body>
 	<div class="container-fluid">
-		<div class="row">
-
+			<div class="row">
+		
 <div class="col-xs-12">
 	<nav class="navbar navbar-inverse">
       <div class="navbar-header">
-      <a class="navbar-brand" href="#">Mailbox</a>
+      <a class="navbar-brand" href="index.html">Mailbox</a>
     </div>
 
     <div>
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
-        <li><a href="Register.html">Register</a></li></ul>
+        <li><a href="index.html">Home</a></li>
+        <li  class="active"><a href="#">Register</a></li>
     </div>
 
 
@@ -76,41 +74,35 @@ color: white;
 
    
 
-</nav></div>
+</nav>
 </div>
+</div>    
 
 
-    
+
       <div class="row">
 
-	<div class="login">
-	<div class="col-xs-4"></div>
-
-	<div class="col-xs-4" id="main">
-		<img src="MB.jpg" class=" mb" alt="Mountain View" style="width:100px;height:100px;">
-<form action="/login" method="post">
-	<div class="form-group">
-	
-	
-<input type="text"  class="form-control" id="name" name="username" placeholder="Username"><br>
-
-<input type="password" class="form-control" id="pass" name="password" placeholder="Password"><br>
-<input type="submit" class="btn btn-primary" label="Submit">
-
-</div>
-</form>
-</div>
 <div class="col-xs-4"></div>
-</div>
-</div>
-   
-    
+<div class="col-xs-4" id="main">
+	<img src="MB.jpg" class="mb" alt="Mountain View" style="width:100px;height:100px;">
+<form action="/Register" method="post">
+      <div class="form-group">
 
+	
+	<input type="text"  class="form-control" id="ename" name="username" placeholder="Username"><br>
 
+	<input type="password" class="form-control" id="epass" name="password" placeholder="Enter password"><br>
 
+	<input type="email" class="form-control" id="email" name="mail" placeholder="Enter E-mail"><br>
+	
+	<input type="submit" class="btn btn-primary" value="Register">
+	</div>
+	</form>
 
+	</div>
+    </div>
 
-</div>
+    </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
 <script type="text/javascript" src="bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
@@ -119,3 +111,4 @@ color: white;
 </body>
 
 </html>
+    

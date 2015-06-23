@@ -1,0 +1,11 @@
+<a href="#" class="list-group-item">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox">
+                                </label>
+                            </div>
+                            <span class="glyphicon glyphicon-star-empty"></span><span class="name" style="min-width: 120px;
+                                display: inline-block;">'+data._id+'</span> <span class="">'+data.subject+'</span>
+                            <span class="text-muted" style="font-size: 11px;">- '+data.message+'</span> <span
+                                class="badge">'+data.timestamp+'</span> <span class="pull-right"><span class="glyphicon glyphicon-paperclip">
+                                </span></span></a>

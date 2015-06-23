@@ -1,55 +1,84 @@
 var express = require('express')
   , passport = require('passport')
   , util = require('util')
-  , LocalStrategy = require('passport-local').Strategy
-  , monk = require('monk')
-  , db = monk('localhost:27017/login');
+  , LocalStrategy = require('passport-local').Strategy;
 
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
+
+
+var monk = require('monk');
+var db = monk('localhost:27017/logintest');
+
 //var flash    = require('connect-flash');
 
 
 
-var users = [
-    { id: 1, username: 'bob', password: 'secret', email: 'bob@example.com' }
-  , { id: 2, username: 'joe', password: 'birthday', email: 'joe@example.com' }
-];
+function findByUsername(username, fn) {
+  var collection = db.get('loginUsers');
+collection.findOne({username:username},{},function(e,docs){
+  console.log("now in user" ,docs);
+    if(docs)
+    {
+      return fn(null,docs);
+    }
+    else {
+      return fn(null,null);
+    }
+
+});
+}
+function findForInbox(res,email){
+  var collect=db.get("emails");
+  collect.find({to:email},{},function(e,docs){
+    console.log("now in inbox",docs);
+    if(docs)
+    {
+       sendData(res,docs);
+    }
+    else 
+    {
+      return null;
+    }
+  });
+
+}
+
+function findforSent(res,email){
+  var collect=db.get("emails");
+  collect.find({from:email},{},function(e,docs){
+    console.log("now in sent",docs);
+    if(docs)
+    {
+       sendData(res,docs);
+    }
+    else 
+    {
+      return null;
+    }
+  });
+
+}
+
 
 function findById(id, fn) {
-  var collection=db.get('loginusers');
-  collection.findOne({_id:id},{},function(e,docs){
-console.log("id"+docs._id);
-if(docs._id){
-  fn(null,docs);
+    var collection = db.get('loginUsers');
+collection.findOne({_id:id},{},function(e,docs){
+console.log("now in id",docs);
+if(docs)
+{
+  return fn(null,docs);
 }
-else{
-  fn(new Error('User '+id + 'does not exist'));
+else 
+{
+  return fn(null,null);
 }
-  });
-  
-}
-
-function findByUsername(username, fn) {
-  var collection = db.get('loginusers');
-collection.findOne({username:username},{},function(e,docs){
-  console.log("username"+docs.username);
-    console.log(docs.password);
-    if(docs.username==username)
-      return fn(null, docs);
-
-      return fn(null,null);
 });
-
 }
 
 
 var app = express();
-app.use(function(req,res,next){
-    req.db = db;
-    next();
-});
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
@@ -67,7 +96,10 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-
+app.use(function(req,res,next){
+    req.db = db;
+    next();
+})
 
 
 // Passport session setup.
@@ -76,12 +108,10 @@ app.use(passport.session());
 //   this will be as simple as storing the user ID when serializing, and finding
 //   the user by ID when deserializing.
 passport.serializeUser(function(user, done) {
-  console.log("ser",user);
   done(null, user._id);
 });
 
 passport.deserializeUser(function(id, done) {
-  console.log(id,"id");
   findById(id, function (err, user) {
     done(err, user);
   });
@@ -120,15 +150,30 @@ passport.use(new LocalStrategy(
 app.use(express.static(__dirname + '/public'));
 
 
+app.get('/inbox', ensureAuthenticated, function(req, res){
+  var obj=findForInbox(res,req.user.mail);
+  console.log("checking object",obj);
+  
 
-
+});
+function sendData(res,obj)
+{
+  console.log("finally checking object",obj);
+  res.send(obj);
+}
 
 app.get('/account', ensureAuthenticated, function(req, res){
   res.send(req.user);
+
 });
 
 app.get('/login', function(req, res){
   res.send("login karrrlo!")
+});
+
+app.get('/sent', ensureAuthenticated, function(req, res){
+  var obj=findforSent(res,req.user.email);
+  console.log("checking object",obj);
 });
 
 // POST /login
@@ -141,24 +186,50 @@ app.get('/login', function(req, res){
 app.post('/login', 
   passport.authenticate('local', { failureRedirect: '/login'}),
   function(req, res) {
-    console.log("success",req.user);
-    console.log("s2",req.session);
+   
 
-    res.redirect('/account');
+    res.redirect('/inbox.html');
   });
+
 app.post('/Register',function(req,res){
-  var collection = req.db.get('loginusers');
-  collection.insert(req.body, function (err, doc) {
+var collection = req.db.get("loginUsers");
+
+    // Submit to the DB
+    collection.insert(req.body, function (err, doc) {
         if (err) {
             // If it failed, return error
             res.send("There was a problem adding the information to the database.");
         }
         else {
-            res.redirect('/');
+            res.redirect("/");
         }
     });
-}
-  );
+
+  })
+
+app.post('/email',function(req,res){
+var collection = req.db.get("emails");
+        
+      console.log('bhai yeh req user email hai',req.user.email);
+      var from=req.user.mail;
+      var to=req.body.to;
+      var message=req.body.message;
+      var subject=req.body.subject;
+      var timestamp=new Date().getTime();
+      var temp={'to':to,'from':from,'message':message,'subject':subject,'timestamp':timestamp};
+      console.log('haan bhai temp',temp);
+    collection.insert(temp, function (err, doc) {
+        if (err) {
+            // If it failed, return error
+            res.send("There was a problem adding the information to the database.");
+        }
+        else {
+            res.redirect("/inbox.html");
+        }
+    });
+
+  })
+
   
 // POST /login
 //   This is an alternative implementation that uses a custom callback to
@@ -184,7 +255,7 @@ app.get('/logout', function(req, res){
   res.redirect('/');
 });
 
-app.listen(3000);
+app.listen(3002);
 
 
 // Simple route middleware to ensure user is authenticated.
@@ -193,7 +264,7 @@ app.listen(3000);
 //   the request will proceed.  Otherwise, the user will be redirected to the
 //   login page.
 function ensureAuthenticated(req, res, next) {
-  console.log("req.user",req.user,req.session);
-  if (req.isAuthenticated()) { return next(); }
+  if (req.isAuthenticated()) {
+ return next(); }
   res.redirect('/login');
 }
