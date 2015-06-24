@@ -172,9 +172,10 @@ app.get('/login', function(req, res){
 });
 
 app.get('/sent', ensureAuthenticated, function(req, res){
-  var obj=findforSent(res,req.user.email);
+  var obj=findforSent(res,req.user.mail);
   console.log("checking object",obj);
 });
+
 
 // POST /login
 //   Use passport.authenticate() as route middleware to authenticate the

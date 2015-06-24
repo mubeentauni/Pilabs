@@ -40,5 +40,5 @@ function loader()
 {
 	loader();
 }
- 	,10000);
+ 	,1000);
 	
