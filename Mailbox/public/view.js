@@ -19,6 +19,7 @@
 		 			//	$("#subject").append(subject);
 		 			//	$("#message").append(message);
 		 		//	$("#reply").append(rep);
+		 				$(".loading").remove();
 		 				$(".inbox").append(inb);
 }		
 

@@ -14,6 +14,7 @@ console.log(data.to);
 		 				//$("#from").append(from);
 		 				//$("#subject").append(subject);
 		 				//$("#message").append(message);
+		 				$(".loading").remove();
 		 				$(".inbox").append(inb);
 }
 
