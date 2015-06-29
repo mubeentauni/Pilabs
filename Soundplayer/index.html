@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+		<meta name="viewport" content="width=device-width">
+	<link rel="stylesheet" href="bootstrap-3.3.4-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+	<title>Music Player</title>
+
+	
+</head>
+<body>
+
+	<div class="navbar navbar-default navbar-fixed-top" role="navigation" style="background-color:skyblue;"> 
+		<div class="container"> 
+			<div class="navbar-header" >
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Music Player</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav hidden-xs" >
+        <li ><a href="#"><span class="glyphicon glyphicon-cog" style="color:white"></span> <span class="sr-only">(current)</span></a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-bell" style="color:white"></span></a></li>
+         <li><a href="#"><span class="glyphicon glyphicon-circle-arrow-left" style="color:white"></span></a></li>
+         <li><a href="#"><span class="glyphicon glyphicon-circle-arrow-right" style="color:white"></span></a></li>
+      </ul>
+      <ul class="nav navbar-nav hidden-md hidden-lg hidden-sm" >
+        <li ><a href="#">Settings<span class="glyphicon glyphicon-cog" style="float:right"></span> <span class="sr-only">(current)</span></a></li>
+        <li><a href="#">Notifications<span class="glyphicon glyphicon-bell" style="float:right"></span></a></li>
+      </ul>
+
+      
+      <ul class="nav navbar-nav navbar-right">
+        <form class="navbar-form navbar-left"  role="search" style="border-color:skyblue;">
+        <div class="form-group has-feedback">
+        	<i class="glyphicon glyphicon-search form-control-feedback"></i>
+          <input type="text"  id="tex" class="form-control">
+          
+
+        </div>
+        
+      </form>
+      </ul>
+    </div>
+		</div>
+	</div> 
+    <div class="container-fluid">
+  <div id="wrapper">
+   <div id="sidebar-wrapper" >
+            
+
+            <ul class="sidebar-nav">
+                 <h5>MAIN</h5>
+                <li class="active">
+                   <a href="#">Whats New<span class="glyphicon glyphicon-list-alt" style="float:right; margin-top:7px;margin-right:10px;"></span></a>
+                </li>
+                <li>
+                    <a href="#">Inbox<span class="glyphicon glyphicon-inbox" style="float:right; margin-top:7px;margin-right:10px;"></span></a>
+                </li>
+                <li>
+                    <a href="#">People<span class="glyphicon glyphicon-user" style="float:right; margin-top:7px;margin-right:10px;"></span></a>
+                </li>
+                <li>
+                    <a href="#">Play Queue<span class="glyphicon glyphicon-tasks" style="float:right; margin-top:7px;margin-right:10px;"></span></a>
+                </li>
+                <li>
+                    <a href="#">Devices<span class="glyphicon glyphicon-phone" style="float:right; margin-top:7px;margin-right:10px;"></span></a>
+                </li>
+                 <h5>Collection</h5>
+                <li>
+                   <a href="#">Library<span class="glyphicon glyphicon-list" style="float:right; margin-top:7px;margin-right:10px;"></span></a>
+                </li>
+                <li>
+                    <a href="#">Favourites<span class="glyphicon glyphicon-heart" style="float:right; margin-top:7px;margin-right:10px;"></span></a>
+                </li>
+                <li>
+                    <a href="#">History<span class="glyphicon glyphicon-repeat" style="float:right; margin-top:7px;margin-right:10px;"></span></a>
+                </li>
+                <h5>Playlists</h5>
+                <li>
+                   <a href="#">Music Lounge<span class="glyphicon glyphicon-music" style="float:right; margin-top:7px;margin-right:10px;"></span></a>
+                </li>
+            </ul>
+          
+                
+
+
+        </div>
+
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                
+                    <div class="col-lg-10 col-sm-12 col-md-10 col-xs-12" style="">
+                        <a href="#menu-toggle" class="btn hidden-md hidden-lg hidden-sm" id="menu-toggle"><span class="glyphicon glyphicon-th-list"></span></a>
+                        
+    <strong>What's new?</strong>
+    <p style="text-align:right">
+    <!--<a href="javascript:;"><i class="glyphicon glyphicon-list"></i></a>
+    <a href="#"><i class="glyphicon glyphicon-th-large"></i></a>
+    <a href="#"><i class="glyphicon glyphicon-th"></i></a>-->
+    </p>
+<div class="row">
+<div   class="col-xs-6 col-md-2 music"  >
+<a href="music1.png" class="thumbnail">
+    <img src="music1.png" alt="music album">
+</a>
+<p style="text-align:center">Set Fire to the Rain</p>
+</div>
+
+<div   class="col-xs-6 col-md-2 music"  >
+<a href="music1.png" class="thumbnail">
+    <img src="music1.png" alt="music album">
+</a>
+<p style="text-align:center">Set Fire to the Rain</p>
+</div>
+
+<div   class="col-xs-6 col-md-2 music"  >
+<a href="music1.png" class="thumbnail">
+    <img src="music1.png"  alt="music album">
+</a>
+<p style="text-align:center">Set Fire to the Rain</p>
+</div>
+
+<div   class="col-xs-6 col-md-2 music"  >
+<a href="music1.png" class="thumbnail">
+    <img src="music1.png" alt="music album">
+</a>
+<p style="text-align:center">Set Fire to the Rain</p>
+</div>
+
+</div>
+<div class="row">
+<div   class="col-xs-6 col-md-2 music"  >
+<a href="music2.png" class="thumbnail">
+    <img src="music2.png" alt="music album">
+</a>
+<p style="text-align:center">Set Fire to the Rain</p>
+</div>
+
+<div   class="col-xs-6 col-md-2 music"  >
+<a href="music2.png" class="thumbnail">
+    <img src="music2.png"  alt="music album">
+</a>
+<p style="text-align:center">Set Fire to the Rain</p>
+</div>
+<div   class="col-xs-6 col-md-2 music"  >
+<a href="music2.png" class="thumbnail">
+    <img src="music2.png" alt="music album">
+</a>
+<p style="text-align:center">Set Fire to the Rain</p>
+</div>
+<div   class="col-xs-6 col-md-2 music"  >
+<a href="music2.png" class="thumbnail">
+    <img src="music2.png" alt="music album">
+</a>
+<p style="text-align:center">Set Fire to the Rain</p>
+</div>
+</div>
+                    </div>
+                    <div class="right hidden-sm hidden-xs">
+                        <div class="col-lg-2 col-md-2">
+ <h5><strong>STREAM</strong></h5>
+      <ul class="nav nav-stacked">
+        <li>
+        <a href="#"><span class="glyphicon glyphicon-list-alt" style="margin-right:10px;"></span>Trending</a>     
+        </li>
+
+          <li>
+        <a href="#"><span class="glyphicon glyphicon-music" style="margin-right:10px;"></span>Hall of Fame</a>       
+        </li>
+      </ul>
+</div>
+                    </div>
+                
+            </div>
+        </div>
+      </div>
+
+  </div>
+
+
+
+
+
+<footer class="footer">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 hidden-xs hidden-sm hiddem-md">
+    <img src="back.png" class="butts img-responsive">
+    <img src="play.png" class="butts1 img-responsive">
+    <img src="next.png" class="butts2 img-responsive">
+   <div class="ranger"> <input type="range"></div>
+   <div class="volume hidden-xs hidden-sm"><span class="glyphicon glyphicon-volume-up" ></span> <input type="range"> </div>
+   <div class="glyphicon glyphicon-random hidden-xs hidden-sm"style="margin-left:96%; top:-28px;"></div>
+</div>
+<div class="col-xs-12 hidden-md hidden-lg">
+
+    <div class="row">
+        <div class="imgg">
+         <img src="back.png" class="butt img">
+    <img src="play.png" class="butt1 img">
+    <img src="next.png" class="butt2 img">
+</div>
+    </div>
+    <div class="row">
+         <div class="ranger1"> <input type="range"></div>
+         <div class="volume1 hidden-md hidden-lg"><span class="glyphicon glyphicon-volume-up" ></span> <input type="range"> </div>
+   <div class="glyphicon glyphicon-random hidden-md hidden-lg"style="margin-left:90%; top:-15px;"></div>
+    </div>
+
+
+</div>
+
+
+</div>
+</div>
+
+</footer>
+
+ 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="bootstrap-3.3.4-dist/js/bootstrap.js"></script>
+<script type="text/javascript" href="rangeslider/rangeslider.js"></script>
+<script type="text/javascript" href="rangeslider/rangeslider.min.js"></script>
+
+ <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+</body>
+</html>
