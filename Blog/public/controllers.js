@@ -23,6 +23,8 @@ app.controller("postController",function($scope,ergastAPIservice,$routeParams)
 
   $scope.id=$routeParams.id;
    ergastAPIservice.getBlog($scope.id).success(function(res){
+    console.log("response44444444",res);
+    console.log("response end")
       $scope.blog=res;
     })
 });

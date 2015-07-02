@@ -174,9 +174,7 @@ function sendData(res,obj)
 
 
 
-app.get('/login', function(req, res){
-  res.send({msg:"login kr"});
-});
+
 
 
 
