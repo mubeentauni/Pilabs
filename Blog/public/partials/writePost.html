@@ -1,0 +1,56 @@
+<div class="writepost">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-3"></div>
+    
+    <div class="col-xs-6"><div class="jumbotron">
+  <h1>Write Blog<h1></div></div></div></div>
+    <div class="row">
+<div class="col-xs-4"></div>
+<div class="col-xs-4">
+
+  <form ng-app="myApp" ng-submit="savePost()" ng-controller="postingController" name="myForm">
+
+<div class="form-group">
+    <label for="name">Blog Title</label>
+    <input class="form-control" type="text" placeholder="Enter Title" name="ptitle" ng-model="ptitle" required>
+    <span style="color:red" ng-show="myForm.ptitle.$dirty && myForm.ptitle.$invalid">
+    <span ng-show="myForm.ptitle.$error.required">Title is required.</span>
+    </span>
+   
+
+
+
+    <label for="name">Blog Subtitle</label>
+    <input class="form-control" type="text" name="subtitle" placeholder="Enter Subtitle" ng-model="subtitle" required>
+    <span style="color:red" ng-show="myForm.subtitle.$dirty && myForm.subtitle.$invalid">
+    <span ng-show="myForm.subtitle.$error.required">Subtitle is required.</span>
+    </span>
+   
+
+
+
+
+    <label for="name">Enter pseudonym or Complete name</label>
+   <input class="form-control" type="text" name="author"placeholder="Enter name"  ng-model="author" required>
+   <span style="color:red" ng-show="myForm.author.$dirty && myForm.author.$invalid">
+   <span ng-show="myForm.author.$error.required">Author name/Pseudonym is required.</span>
+   </span>
+  
+
+
+    <label for="name">Post</label>
+    <textarea form="myForm" class="form-control" rows="8" placeholder="Blog Text" name="post" ng-model="post" style="margin-bottom:10px"></textarea>
+    <span style="color:red" ng-show="myForm.post.$dirty && myForm.post.$invalid">
+    <span ng-show="myForm.post.$error.required">Post is required.</span>
+   </span>
+   <div class="col-xs-5"></div>
+    <input type="submit" value="Save" class="btn" >
+      
+      </div>
+  </form>
+    
+  </div>
+</div>
+</div>
+</div>
